@@ -1,6 +1,7 @@
 # Git aliases
 alias gs='git status'
 alias ga='git add'
+alias gl='git log'
 function gcommit() {
     if [ -z "$1" ]; then
         echo "Usage: gcommit <commit_message>"
