@@ -37,7 +37,7 @@ alias up='docker-compose up'
 alias down='docker-compose down'
 alias makemigrations='docker-compose run backend python manage.py makemigrations'
 alias migrate='docker-compose run backend python manage.py migrate'
-
+alias uldb='docker-compose run cron ./scripts/updatelocaldb.sh'
 # Project aliases
 alias bismillah=". $HOME/Code/projects/boilerplate-project/start-project.sh"
 
