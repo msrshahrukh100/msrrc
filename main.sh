@@ -10,7 +10,7 @@ function gcommit() {
     git commit -m "$*"
 }
 alias gpm='git push origin main'
-alias gp="git push origin"
+alias gpush="git push origin"
 
 
 # Docker aliases
