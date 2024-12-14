@@ -1,8 +1,9 @@
 # Git aliases
 alias gs='git status'
-function gc() {
+alias ga='git add'
+function gcommit() {
     if [ -z "$1" ]; then
-        echo "Usage: gc <commit_message>"
+        echo "Usage: gcommit <commit_message>"
         return 1
     fi
     git commit -m "$*"
@@ -38,9 +39,10 @@ alias migrate='docker-compose run backend python manage.py migrate'
 
 # Project aliases
 alias bismillah=". $HOME/Code/projects/boilerplate-project/start-project.sh"
-alias klai="cd $HOME/Code/projects/klai/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
-alias footprint-economy="cd $HOME/Code/projects/footprint-economy/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
 
+alias klai="cd $HOME/Code/projects/klai/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
+alias footprint="cd $HOME/Code/projects/footprint-economy/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
+alias scribble="cd $HOME/Code/projects/scribblewithai/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
 
 
 
