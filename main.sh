@@ -43,13 +43,13 @@ alias uldb='docker-compose run cron ./scripts/updatelocaldb.sh'
 alias bismillah=". $HOME/Code/projects/boilerplate-project/start-project.sh"
 
 alias klaicd="cd $HOME/Code/projects/klai/development"
-alias klai="cd $HOME/Code/projects/klai/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
+alias klai="klaicd && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && cursor . && up"
 
 alias fecocd="cd $HOME/Code/projects/footprint-economy/development"
-alias feco="cd $HOME/Code/projects/footprint-economy/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
+alias feco="feco && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && cursor . && up"
 
 alias scribblecd="cd $HOME/Code/projects/scribblewithai/development"
-alias scribble="cd $HOME/Code/projects/scribblewithai/development && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && docker-compose up"
+alias scribble="scribblecd && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && cursor . && up"
 
 
 
