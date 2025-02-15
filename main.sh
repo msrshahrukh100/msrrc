@@ -23,14 +23,28 @@ function dl() {
         return 1
     fi
     
-    container_id=$(docker ps --format "{{.ID}}" --filter "name=$1")
+    # Get the full container name
+    container_name=$(docker ps --format "{{.Names}}" | grep "$1")
     
-    if [ -z "$container_id" ]; then
-        echo "Error: No running container found with name '$1'"
+    if [ -z "$container_name" ]; then
+        echo "Error: No running container found with name containing '$1'"
+        echo "Running containers:"
+        docker ps --format "{{.Names}}"
         return 1
     fi
     
-    docker exec -it "$container_id" sh
+    # If multiple containers found, use the first one
+    container_name=$(echo "$container_name" | head -n1)
+    echo "Connecting to container: $container_name"
+    
+    # Try bash first with TERM environment, if it fails, try sh
+    if ! docker exec -it -e TERM=xterm "$container_name" bash 2>/dev/null; then
+        echo "Bash shell failed, trying sh..."
+        if ! docker exec -it -e TERM=xterm "$container_name" sh 2>/dev/null; then
+            echo "Both bash and sh failed. Trying with alpine..."
+            docker exec -it -e TERM=xterm "$container_name" /bin/ash
+        fi
+    fi
 }
 
 # Docker compose shortcuts
