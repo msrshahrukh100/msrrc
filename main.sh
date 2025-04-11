@@ -10,6 +10,7 @@ function gcommit() {
     git commit -m "$*"
 }
 alias gpm='git push origin main'
+alias gpma='git push origin main && git push origin2 main'
 alias gpush="git push origin"
 
 
@@ -71,3 +72,22 @@ alias scribble="scribblecd && docker ps -a -q | xargs -r docker stop > /dev/null
 
 # System shortcuts
 alias c='clear'
+
+# Response time measurement tool
+function measure() {
+    if [ -z "$1" ]; then
+        echo "Usage: measure <url> [options]"
+        echo "Options:"
+        echo "  -n <iterations>  Number of iterations (default: 5)"
+        echo "  -m <method>     HTTP method (default: GET)"
+        echo "  -d <data>       Request data in JSON format"
+        echo "  -H <headers>    Request headers in JSON format"
+        return 1
+    fi
+    
+    # Make sure the script is executable
+    chmod +x "$HOME/msrrc/response_time_measure.sh" 2>/dev/null
+    
+    # Run the shell script
+    "$HOME/msrrc/response_time_measure.sh" -u "$1" "${@:2}"
+}
