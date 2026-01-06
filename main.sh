@@ -67,7 +67,27 @@ alias scribblecd="cd $HOME/Code/projects/scribblewithai/development"
 alias scribble="scribblecd && docker ps -a -q | xargs -r docker stop > /dev/null 2>&1 && cursor . && up"
 
 
-
+function write() {
+    # Path to the ideas folder
+    IDEAS_DIR="/Users/mohammadshahrukh/Code/projects/content-machine/ideas"
+    
+    # Find the highest numbered folder
+    HIGHEST=$(find "$IDEAS_DIR" -maxdepth 1 -type d -name '[0-9]*' | sed 's/.*\///' | sort -n | tail -1)
+    
+    # Calculate next number
+    NEXT=$((HIGHEST + 1))
+    
+    # Create new folder
+    NEW_DIR="$IDEAS_DIR/$NEXT"
+    mkdir -p "$NEW_DIR"
+    
+    # Create my.md file
+    NEW_FILE="$NEW_DIR/my.md"
+    touch "$NEW_FILE"
+    
+    # Open in TextEdit
+    open -a TextEdit "$NEW_FILE"
+}
 
 
 # System shortcuts
